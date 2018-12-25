@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -23,12 +22,11 @@ namespace Volo.HitCommerce.Customers
             return await DbSet.Where(x => x.VendorId.HasValue && x.VendorId == vendorId).ToListAsync();
         }
 
-        public async Task<List<Customer>> GetCustomers(int maxCount, string filter,
-            CancellationToken cancellationToken = default)
+        public async Task<List<Customer>> GetCustomers(int maxCount, string filter)
         {
             return await DbSet
                 .WhereIf(!string.IsNullOrWhiteSpace(filter), x => x.UserName.Contains(filter))
-                .Take(maxCount).ToListAsync(cancellationToken);
+                .Take(maxCount).ToListAsync();
         }
     }
 }
