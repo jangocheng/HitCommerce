@@ -23,7 +23,7 @@ namespace Volo.HitCommerce.Customers
             return await GetMongoQueryable().Where(x => x.VendorId == vendorId).ToListAsync();
         }
 
-        public async Task<List<Customer>> GetCustomers(int maxCount, string filter)
+        public async Task<List<Customer>> GetCustomers(int maxCount, string filter, CancellationToken cancellationToken)
         {
             var query = GetMongoQueryable();
 
@@ -32,7 +32,7 @@ namespace Volo.HitCommerce.Customers
                 query = query.Where(x => x.UserName.Contains(filter));
             }
 
-            return await query.Take(maxCount).ToListAsync();
+            return await query.Take(maxCount).ToListAsync(cancellationToken);
         }
     }
 }
