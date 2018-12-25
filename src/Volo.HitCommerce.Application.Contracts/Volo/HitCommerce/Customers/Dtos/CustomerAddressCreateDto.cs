@@ -24,5 +24,7 @@ namespace Volo.HitCommerce.Customers.Dtos
         public Guid StateOrProvinceId { get; set; }
 
         public Guid? DistrictId { get; set; }
+        
+        public AddressType AddressType { get; set; }
     }
 }

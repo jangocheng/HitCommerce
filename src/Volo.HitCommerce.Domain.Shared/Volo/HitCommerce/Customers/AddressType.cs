@@ -1,4 +1,4 @@
-﻿namespace Volo.HitCommerce.Addresses
+﻿namespace Volo.HitCommerce.Customers
 {
     public enum AddressType
     {

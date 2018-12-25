@@ -5,26 +5,20 @@ namespace Volo.HitCommerce.Customers.Dtos
 {
     public class CustomerAddressDto : EntityDto<Guid>
     {
-        public string ContactName { get; set; }
-
         public string Phone { get; set; }
 
         public string AddressLine1 { get; set; }
 
         public string AddressLine2 { get; set; }
+        
+        public string City { get; set; }
 
-        public string DistrictName { get; set; }
+        public string ZipCode { get; set; }
 
-        public string StateOrProvinceName { get; set; }
+        public Guid CountryId { get; set; }
 
-        public string CountryName { get; set; }
+        public Guid StateOrProvinceId { get; set; }
 
-        public bool IsDefaultShippingAddress { get; set; }
-
-        public bool DisplayDistrict { get; set; }
-
-        public bool DisplayZipCode { get; set; }
-
-        public bool DisplayCity { get; set; }
+        public Guid? DistrictId { get; set; }
     }
 }

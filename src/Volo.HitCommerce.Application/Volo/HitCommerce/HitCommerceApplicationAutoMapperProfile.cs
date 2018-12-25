@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using Volo.HitCommerce.Addresses;
 using Volo.HitCommerce.BaseEntities;
 using Volo.HitCommerce.BaseEntities.Dtos;
+using Volo.HitCommerce.Customers;
+using Volo.HitCommerce.Customers.Dtos;
 using Volo.HitCommerce.Directions;
 using Volo.HitCommerce.Directions.Dtos;
 using Volo.HitCommerce.Vendors;
@@ -16,6 +19,8 @@ namespace Volo.HitCommerce
         {
             CreateMap<BaseEntity, BaseEntityDto>();
             CreateMap<BaseEntityType, BaseEntityTypeDto>();
+
+            CreateMap<Address, CustomerAddressDto>();
             
             CreateMap<Country, CountryDto>();
             CreateMap<StateOrProvince, StateOrProvinceDto>();

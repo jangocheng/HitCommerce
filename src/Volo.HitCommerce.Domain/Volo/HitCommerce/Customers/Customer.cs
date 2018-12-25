@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Volo.Abp.Data;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.Users;
 
 namespace Volo.HitCommerce.Customers
 {
-    public class Customer : AggregateRoot<Guid>, IUser, IHasExtraProperties
+    public class Customer : AggregateRoot<Guid>, IUser
     {
         public virtual Guid? TenantId { get; protected set; }
 
@@ -35,12 +34,8 @@ namespace Volo.HitCommerce.Customers
         
         public virtual ICollection<CustomerUserGroup> Groups { get; protected set; }
         
-        public virtual Dictionary<string, object> ExtraProperties { get; protected set; }
-
-        
         protected Customer()
         {
-            ExtraProperties = new Dictionary<string, object>();
         }
 
         public Customer(IUserData user)
@@ -57,7 +52,6 @@ namespace Volo.HitCommerce.Customers
 
             Groups = new Collection<CustomerUserGroup>();
             Addresses = new Collection<CustomerAddress>();
-            ExtraProperties = new Dictionary<string, object>();
         }
     }
 }
