@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\abp\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Volo.HitCommerce.Domain\Volo.HitCommerce.Domain.csproj" />
+    <ProjectReference Include="..\..\abp\framework\src\Volo.Abp.MongoDB\Volo.Abp.MongoDB.csproj" />
+    <ProjectReference Include="..\..\abp\modules\users\src\Volo.Abp.Users.MongoDB\Volo.Abp.Users.MongoDB.csproj" />
+  </ItemGroup>
+
+</Project>
