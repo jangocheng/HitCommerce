@@ -28,6 +28,9 @@ After the effective changes, we are merging `abp/master` to `hitaspdotnet/abp`. 
 ```
 cd abp
 git pull
+cd ..
+git submodule init
+git submodule update
 ```
 Then run the `abp/build-all.ps1` again and don't forget `dotnet restore` at the `HitCommerce` root directory!
 
