@@ -3,9 +3,9 @@ using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Entities;
 
-namespace Volo.HitCommerce.BaseEntities
+namespace Volo.HitCommerce.Seo
 {
-    public class BaseEntity : AggregateRoot<Guid>
+    public class UrlRecord : AggregateRoot<Guid>
     {
         [NotNull] 
         public virtual string Name { get; protected set; }
@@ -14,21 +14,19 @@ namespace Volo.HitCommerce.BaseEntities
         public virtual string Slug { get; protected set; }
 
         public virtual Guid EntityId { get; protected set; }
+        
+        public virtual bool IsActive { get; set; }
 
-        public virtual Guid BaseEntityTypeId { get; protected set; }
-
-        protected BaseEntity()
+        protected UrlRecord()
         {
         }
 
-        public BaseEntity(Guid id, [NotNull] string name, [NotNull] string slug, Guid entityId,
-            Guid baseEntityTypeId)
+        public UrlRecord(Guid id, Guid entityId, [NotNull] string name, [NotNull] string slug)
         {
             Id = id;
             Slug = Check.NotNullOrWhiteSpace(slug, nameof(slug));
             Name = Check.NotNullOrWhiteSpace(name, nameof(name));
             EntityId = entityId;
-            BaseEntityTypeId = baseEntityTypeId;
         }
 
         public virtual void SetName([NotNull] string name)

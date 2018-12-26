@@ -1,11 +1,10 @@
 ﻿using MongoDB.Bson.Serialization;
-using Volo.Abp.MongoDB;
 using Volo.Abp.Threading;
 using Volo.HitCommerce.Addresses;
-using Volo.HitCommerce.BaseEntities;
 using Volo.HitCommerce.Customers;
 using Volo.HitCommerce.Directions;
 using Volo.HitCommerce.Medias;
+using Volo.HitCommerce.Seo;
 using Volo.HitCommerce.UserGroups;
 using Volo.HitCommerce.Vendors;
 using Volo.HitCommerce.Widgets;
@@ -30,12 +29,7 @@ namespace Volo.HitCommerce.MongoDB
                     map.AutoMap();
                 });
                 
-                BsonClassMap.RegisterClassMap<BaseEntity>(map =>
-                {
-                    map.AutoMap();
-                });
-                
-                BsonClassMap.RegisterClassMap<BaseEntityType>(map =>
+                BsonClassMap.RegisterClassMap<UrlRecord>(map =>
                 {
                     map.AutoMap();
                 });

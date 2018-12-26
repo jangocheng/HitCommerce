@@ -2,10 +2,10 @@
 using Volo.Abp;
 using Volo.Abp.MongoDB;
 using Volo.HitCommerce.Addresses;
-using Volo.HitCommerce.BaseEntities;
 using Volo.HitCommerce.Customers;
 using Volo.HitCommerce.Directions;
 using Volo.HitCommerce.Medias;
+using Volo.HitCommerce.Seo;
 using Volo.HitCommerce.UserGroups;
 using Volo.HitCommerce.Vendors;
 using Volo.HitCommerce.Widgets;
@@ -39,14 +39,9 @@ namespace Volo.HitCommerce.MongoDB
                 b.CollectionName = options.CollectionPrefix + "CustomerUserGroups";
             });
 
-            builder.Entity<BaseEntity>(b =>
+            builder.Entity<UrlRecord>(b =>
             {
-                b.CollectionName = options.CollectionPrefix + "Entities";
-            });
-
-            builder.Entity<BaseEntityType>(b =>
-            {
-                b.CollectionName = options.CollectionPrefix + "EntityTypes";
+                b.CollectionName = options.CollectionPrefix + "UrlRecords";
             });
 
             builder.Entity<Address>(b =>

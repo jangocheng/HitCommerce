@@ -2,10 +2,10 @@
 using Volo.Abp.Data;
 using Volo.Abp.MongoDB;
 using Volo.HitCommerce.Addresses;
-using Volo.HitCommerce.BaseEntities;
 using Volo.HitCommerce.Customers;
 using Volo.HitCommerce.Directions;
 using Volo.HitCommerce.Medias;
+using Volo.HitCommerce.Seo;
 using Volo.HitCommerce.UserGroups;
 using Volo.HitCommerce.Vendors;
 using Volo.HitCommerce.Widgets;
@@ -19,10 +19,8 @@ namespace Volo.HitCommerce.MongoDB
 
         public IMongoCollection<Address> Addresses => Collection<Address>();
         
-        public IMongoCollection<BaseEntity> Entities => Collection<BaseEntity>();
-        
-        public IMongoCollection<BaseEntityType> EntityTypes => Collection<BaseEntityType>();
-        
+        public IMongoCollection<UrlRecord> UrlRecords => Collection<UrlRecord>();
+
         public IMongoCollection<Customer> Users => Collection<Customer>();
         
         public IMongoCollection<CustomerAddress> UserAddresses => Collection<CustomerAddress>();
