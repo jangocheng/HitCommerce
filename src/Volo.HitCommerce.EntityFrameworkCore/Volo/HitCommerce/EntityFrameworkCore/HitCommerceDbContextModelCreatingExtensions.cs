@@ -98,13 +98,15 @@ namespace Volo.HitCommerce.EntityFrameworkCore
             {
                 b.ToTable(options.TablePrefix + "UrlRecords", options.Schema);
                 b.HasKey(x => x.Id);
+                b.HasIndex(x => x.EntityId);
 
-
+                
                 b.Property(x => x.Name).IsRequired().HasMaxLength(SeoConsts.MaxNameLength)
                     .HasColumnName(nameof(UrlRecord.Name));
                 b.Property(x => x.Slug).IsRequired().HasMaxLength(SeoConsts.MaxSlugLength)
                     .HasColumnName(nameof(UrlRecord.Slug));
                 b.Property(x => x.EntityId).IsRequired().HasColumnName(nameof(UrlRecord.EntityId));
+                b.Property(x => x.IsActive).HasDefaultValue(true).HasColumnName(nameof(UrlRecord.IsActive));
             });
 
 
