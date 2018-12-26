@@ -21,7 +21,7 @@ namespace Volo.HitCommerce.Seo
             _seoCharacterTable = CharHelper.InitializeSeoCharacter();
         }
 
-        public async Task<UrlRecord> GetUrlRecordById(Guid urlRecordId)
+        public async Task<UrlRecord> GetByIdAsync(Guid urlRecordId)
         {
             return await _urlRecordRepository.GetAsync(urlRecordId);
         }
@@ -56,12 +56,6 @@ namespace Volo.HitCommerce.Seo
 
             var slug = query.FirstOrDefault() ?? string.Empty;
             return slug;
-        }
-
-        public async Task<string> GetSeName<T>(T entity) where T : AggregateRoot<Guid>, ISlugSupported
-        {
-            Check.NotNull(entity, nameof(entity));
-            return await GetSeName(entity.Id, entity.Name);
         }
 
         public async Task<string> GetSeName(Guid entityId, string name)
@@ -136,12 +130,8 @@ namespace Volo.HitCommerce.Seo
             foreach (var urlRecord in urlRecords) await DeleteAsync(urlRecord);
         }
 
-        public async Task SaveSlug<T>(T entity, string name, string slug) where T : AggregateRoot<Guid>, ISlugSupported
+        public async Task SaveSlug(Guid entityId, string name, string slug)
         {
-            Check.NotNull(entity, nameof(entity));
-
-            var entityId = entity.Id;
-
             var query = from ur in _urlRecordRepository.GetList()
                         where ur.EntityId == entityId &&
                               ur.Name == name
@@ -221,17 +211,9 @@ namespace Volo.HitCommerce.Seo
             }
         }
 
-        public async Task<string> ValidateSeName<T>(T entity, string seName, string name, bool ensureNotEmpty)
-            where T : AggregateRoot<Guid>, ISlugSupported
+        public async Task<string> ValidateSeName(Guid entityId, string name, bool ensureNotEmpty)
         {
-            Check.NotNull(entity, nameof(entity));
-            return await ValidateSeName(entity.Id, seName, name, ensureNotEmpty);
-        }
-
-        public async Task<string> ValidateSeName(Guid entityId, string seName, string name, bool ensureNotEmpty)
-        {
-            if (string.IsNullOrWhiteSpace(seName) && !string.IsNullOrWhiteSpace(name)) seName = name;
-            seName = GetSeName(seName, true, true);
+            var seName = GetSeName(name, true, true);
 
             if (string.IsNullOrWhiteSpace(seName))
             {
@@ -252,7 +234,8 @@ namespace Volo.HitCommerce.Seo
                                                       urlRecord.Name.Equals(name,
                                                           StringComparison.InvariantCultureIgnoreCase));
 
-                if (!reserved) break;
+                if (!reserved) 
+                    break;
 
                 tempSeName = $"{seName}-{i}";
                 i++;
