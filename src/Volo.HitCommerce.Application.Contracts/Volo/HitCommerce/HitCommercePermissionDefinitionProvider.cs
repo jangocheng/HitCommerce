@@ -15,11 +15,6 @@ namespace Volo.HitCommerce
             addresses.AddChild(HitCommercePermissions.Addresses.Delete, L("Permission:Delete"));
             addresses.AddChild(HitCommercePermissions.Addresses.Create, L("Permission:Create"));
 
-            var baseEntities = hitCoreGroup.AddPermission(HitCommercePermissions.BaseEntities.Default, L("Permission:BaseEntities"));
-            baseEntities.AddChild(HitCommercePermissions.BaseEntities.Update, L("Permission:Edit"));
-            baseEntities.AddChild(HitCommercePermissions.BaseEntities.Delete, L("Permission:Delete"));
-            baseEntities.AddChild(HitCommercePermissions.BaseEntities.Create, L("Permission:Create"));
-
             var customers = hitCoreGroup.AddPermission(HitCommercePermissions.Customers.Default, L("Permission:Customers"));
             customers.AddChild(HitCommercePermissions.Customers.Update, L("Permission:Edit"));
             customers.AddChild(HitCommercePermissions.Customers.Delete, L("Permission:Delete"));

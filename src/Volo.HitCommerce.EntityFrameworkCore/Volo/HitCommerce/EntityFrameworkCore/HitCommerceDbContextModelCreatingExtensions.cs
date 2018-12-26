@@ -4,10 +4,10 @@ using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.Users.EntityFrameworkCore;
 using Volo.HitCommerce.Addresses;
-using Volo.HitCommerce.BaseEntities;
 using Volo.HitCommerce.Customers;
 using Volo.HitCommerce.Directions;
 using Volo.HitCommerce.Medias;
+using Volo.HitCommerce.Seo;
 using Volo.HitCommerce.UserGroups;
 using Volo.HitCommerce.Vendors;
 using Volo.HitCommerce.Widgets;
@@ -94,38 +94,21 @@ namespace Volo.HitCommerce.EntityFrameworkCore
                 b.Property(x => x.LastUsedOn).HasColumnName(nameof(CustomerAddress.LastUsedOn));
             });
 
-            builder.Entity<BaseEntity>(b =>
+            builder.Entity<UrlRecord>(b =>
             {
-                b.ToTable(options.TablePrefix + "Entities", options.Schema);
+                b.ToTable(options.TablePrefix + "UrlRecords", options.Schema);
                 b.HasKey(x => x.Id);
+                b.HasIndex(x => x.EntityId);
 
-
-                b.Property(x => x.Name).IsRequired().HasMaxLength(BaseEntityConsts.MaxNameLength)
-                    .HasColumnName(nameof(BaseEntity.Name));
-                b.Property(x => x.Slug).IsRequired().HasMaxLength(BaseEntityConsts.MaxSlugLength)
-                    .HasColumnName(nameof(BaseEntity.Slug));
-                b.Property(x => x.EntityId).IsRequired().HasColumnName(nameof(BaseEntity.EntityId));
-                b.Property(x => x.BaseEntityTypeId).IsRequired().HasColumnName(nameof(BaseEntity.BaseEntityTypeId));
-
-                b.HasOne<BaseEntityType>().WithMany().IsRequired().HasForeignKey(p => p.BaseEntityTypeId);
+                
+                b.Property(x => x.Name).IsRequired().HasMaxLength(SeoConsts.MaxNameLength)
+                    .HasColumnName(nameof(UrlRecord.Name));
+                b.Property(x => x.Slug).IsRequired().HasMaxLength(SeoConsts.MaxSlugLength)
+                    .HasColumnName(nameof(UrlRecord.Slug));
+                b.Property(x => x.EntityId).IsRequired().HasColumnName(nameof(UrlRecord.EntityId));
+                b.Property(x => x.IsActive).HasDefaultValue(true).HasColumnName(nameof(UrlRecord.IsActive));
             });
 
-            builder.Entity<BaseEntityType>(b =>
-            {
-                b.ToTable(options.TablePrefix + "EntityTypes", options.Schema);
-                b.HasKey(x => x.Id);
-                b.HasIndex(x => x.Name).IsUnique();
-
-                b.Property(x => x.Name).IsRequired().HasMaxLength(BaseEntityConsts.MaxNameLength)
-                    .HasColumnName(nameof(BaseEntityType.Name));
-                b.Property(x => x.IsMenuable).HasColumnName(nameof(BaseEntityType.IsMenuable));
-                b.Property(x => x.AreaName).HasMaxLength(BaseEntityConsts.MaxAreaNameLength)
-                    .HasColumnName(nameof(BaseEntityType.AreaName));
-                b.Property(x => x.RoutingController).HasMaxLength(BaseEntityConsts.MaxRoutingControllerLength)
-                    .HasColumnName(nameof(BaseEntityType.RoutingController));
-                b.Property(x => x.RoutingAction).HasMaxLength(BaseEntityConsts.MaxRoutingActionLength)
-                    .HasColumnName(nameof(BaseEntityType.RoutingAction));
-            });
 
             builder.Entity<Address>(b =>
             {

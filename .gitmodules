@@ -1,4 +1,4 @@
 [submodule "abp"]
 	path = abp
-	url = https://github.com/hitaspdotnet/abp
+	url = https://github.com/hitaspdotnet/abp.git
 	branch = hit-commerce

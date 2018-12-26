@@ -2,10 +2,10 @@
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.HitCommerce.Addresses;
-using Volo.HitCommerce.BaseEntities;
 using Volo.HitCommerce.Customers;
 using Volo.HitCommerce.Directions;
 using Volo.HitCommerce.Medias;
+using Volo.HitCommerce.Seo;
 using Volo.HitCommerce.UserGroups;
 using Volo.HitCommerce.Vendors;
 using Volo.HitCommerce.Widgets;
@@ -21,10 +21,8 @@ namespace Volo.HitCommerce.EntityFrameworkCore
         
         public DbSet<Address> Addresses { get; set; }
         
-        public DbSet<BaseEntity> Entities { get; set; }
-        
-        public DbSet<BaseEntityType> EntityTypes { get; set; }
-        
+        public DbSet<UrlRecord> UrlRecords { get; set; }
+  
         public DbSet<Customer> Users { get; set; }
         
         public DbSet<CustomerAddress> UserAddresses { get; set; }

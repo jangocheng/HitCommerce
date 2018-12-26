@@ -13,14 +13,6 @@
 
         }
 
-        public static class BaseEntities
-        {
-            public const string Default = GroupName + ".BaseEntity";
-            public const string Delete = Default + ".Delete";
-            public const string Update = Default + ".Update";
-            public const string Create = Default + ".Create";
-        }
-
         public static class Customers
         {
             public const string Default = GroupName + ".Customer";
@@ -78,10 +70,6 @@
                 Addresses.Delete,
                 Addresses.Update,
                 Addresses.Create,
-                BaseEntities.Default,
-                BaseEntities.Delete,
-                BaseEntities.Update,
-                BaseEntities.Create,
                 Customers.Default,
                 Customers.Delete,
                 Customers.Update,

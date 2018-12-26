@@ -2,10 +2,10 @@
 using Volo.Abp.Modularity;
 using Volo.Abp.MongoDB;
 using Volo.HitCommerce.Addresses;
-using Volo.HitCommerce.BaseEntities;
 using Volo.HitCommerce.Customers;
 using Volo.HitCommerce.Directions;
 using Volo.HitCommerce.Medias;
+using Volo.HitCommerce.Seo;
 using Volo.HitCommerce.UserGroups;
 using Volo.HitCommerce.Vendors;
 using Volo.HitCommerce.Widgets;
@@ -28,8 +28,7 @@ namespace Volo.HitCommerce.MongoDB
                 options.AddRepository<CustomerAddress, MongoCustomerAddressRepository>();
                 options.AddRepository<CustomerUserGroup, MongoCustomerUserGroupRepository>();
                 options.AddRepository<Address, MongoAddressRepository>();
-                options.AddRepository<BaseEntity, MongoBaseEntityRepository>();
-                options.AddRepository<BaseEntityType, MongoBaseEntityTypeRepository>();
+                options.AddRepository<UrlRecord, MongoUrlRecordRepository>();
                 options.AddRepository<Country, MongoCountryRepository>();
                 options.AddRepository<StateOrProvince, MongoStateOrProvinceRepository>();
                 options.AddRepository<District, MongoDistrictRepository>();
